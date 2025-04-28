@@ -11,7 +11,6 @@ import useNormalization from "./custom-hooks/useNormalization";
 import useStopping from "./custom-hooks/useStopping";
 
 const SendContext = createContext();
-const AnalysisDataContext = createContext();
 export default function Main() {
   const [markupData, setMarkUpData] = useState({});
   const [sendPressed, setPressedButton] = useState(false);
