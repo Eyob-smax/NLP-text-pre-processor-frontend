@@ -5,7 +5,7 @@ function errorSender(e) {
   };
 }
 
-const IP = "https://nlp-text-pre-processor-backend.railway.internal";
+const IP = "https://nlp-text-pre-processor-backend-production.up.railway.app";
 
 async function getMarkupRemovedText() {
   try {

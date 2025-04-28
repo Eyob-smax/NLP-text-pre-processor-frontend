@@ -60,7 +60,7 @@ export default function InputField() {
     }
     try {
       const res = await fetch(
-        "https://nlp-text-pre-processor-backend.railway.internal/upload",
+        "https://nlp-text-pre-processor-backend-production.up.railway.app/upload",
         {
           method: "POST",
           body: formData,
