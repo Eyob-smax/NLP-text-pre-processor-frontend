@@ -1,13 +1,26 @@
 import React from "react";
 import { FaClipboard } from "react-icons/fa";
+import { mySwal } from "./sweetAlert";
 
 export default function FinalIndex({ handleCancel, data, title }) {
   const handleCopy = async (data) => {
     try {
       await navigator.clipboard.writeText(data);
-      alert("Copied to clipboard");
+      await mySwal.fire({
+        title: "Successful!",
+        text: "Text copied successfully!",
+        icon: "success",
+        timer: 1200,
+        showConfirmButton: false,
+      });
     } catch (err) {
-      console.log("Failed to copy: ", err);
+      await mySwal.fire({
+        title: "Failed!",
+        text: "Failed to copy, text",
+        icon: "error",
+        timer: 700,
+      });
+      console.error(err.message);
     }
   };
   return (

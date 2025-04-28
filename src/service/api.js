@@ -49,7 +49,7 @@ async function getStopped() {
 
 async function getFinalIndex() {
   try {
-    const res = await fetch(`${IP}/final-index`);
+    const res = await fetch(`${IP}/index`);
     const data = await res.json();
     return data;
   } catch (err) {

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useContext, useState } from "react";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { FiArrowUp } from "react-icons/fi";
 import { SendContext } from "./Main";
+import { mySwal } from "./sweetAlert";
 
 export default function InputField() {
   const fileInputRef = useRef(null);
@@ -14,13 +15,25 @@ export default function InputField() {
     fileInputRef.current.click();
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (!file.name.endsWith(".html")) {
-      alert("Please upload a valid HTML file only.");
+      await mySwal.fire({
+        title: "Faild!",
+        text: "Please upload a valid HTML file only.",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 500,
+      });
       return;
     }
-    console.log(file);
+    await mySwal.fire({
+      title: "File Uploaded",
+      text: "Press send button to process the document!",
+      icon: "success",
+      confirmButtonText: "Ok",
+      confirmButtonColor: "#4ade80",
+    });
     if (file) {
       setSelectedFile(file);
     }
@@ -28,7 +41,14 @@ export default function InputField() {
 
   async function sendData() {
     if (!textInput && !selectedFile) {
-      alert("Please enter text or upload a file.");
+      await mySwal.fire({
+        title: "Failed!",
+        text: "Please upload a file.",
+        icon: "error",
+        timer: 800,
+        confirmButtonText: "Ok",
+        confirmButtonColor: "#4ade80",
+      });
       return;
     }
 
@@ -45,15 +65,33 @@ export default function InputField() {
       });
       const data = await res.json();
       if (data.success) {
-        alert("File uploaded successfully");
         setTextInput("");
         setSelectedFile(null);
         setPressedButton((prev) => !prev);
+        await mySwal.fire({
+          title: "Successful!",
+          text: "File uploaded successfully",
+          icon: "success",
+          timer: 1500,
+          showConfirmButton: false,
+        });
       } else {
-        alert("File upload failed");
+        await mySwal.fire({
+          title: "file upload faild",
+          text: "Next error, please try again",
+          icon: "error",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "4ade80",
+        });
       }
     } catch (error) {
       console.error("Error uploading file:", error);
+      await mySwal.fire({
+        title: "Failed!",
+        text: "Something went wrong, " + error.message,
+        icon: "error",
+        timer: 700,
+      });
     }
   }
   useEffect(() => {
@@ -67,7 +105,7 @@ export default function InputField() {
       <div
         onClick={handleButtonClick}
         title="Upload a document"
-        className="cursor-pointer hover:scale-97 p-2 text-2xl rounded-full border-2 mr-5"
+        className="cursor-pointer hover:scale-97 p-[5px] text-2xl rounded-full border-2 mr-5"
       >
         <AiOutlineCloudUpload />
         <input
@@ -75,7 +113,7 @@ export default function InputField() {
           ref={fileInputRef}
           name="file"
           onChange={handleFileChange}
-          style={{ display: "none" }} // hide the input
+          style={{ display: "none" }}
         />
       </div>
       <div className="flex-1 h-full">
@@ -95,7 +133,7 @@ export default function InputField() {
       </div>
       <div
         onClick={sendData}
-        className="ml-5 p-3 bg-black text-2xl text-white rounded-full cursor-pointer hover:opacity-70"
+        className="ml-5 p-[5px] bg-black text-2xl text-white rounded-full cursor-pointer hover:opacity-70"
         title="send document data"
       >
         <FiArrowUp />

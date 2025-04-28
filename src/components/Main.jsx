@@ -11,6 +11,7 @@ import useNormalization from "./custom-hooks/useNormalization";
 import useStopping from "./custom-hooks/useStopping";
 
 const SendContext = createContext();
+const AnalysisDataContext = createContext();
 export default function Main() {
   const [markupData, setMarkUpData] = useState({});
   const [sendPressed, setPressedButton] = useState(false);
@@ -25,10 +26,12 @@ export default function Main() {
       setMarkUpData(result.data);
     })();
   }, [sendPressed]);
+
   const { tokenizedData } = useTokenized({ sendPressed });
   const { stemmedData } = useStemmed({ sendPressed });
   const { normalizedData } = useNormalization({ sendPressed });
   const { stoppedData } = useStopping({ sendPressed });
+
   return (
     <SendContext value={[setPressedButton]}>
       <main className="flex-1 flex flex-col max-h-[85%] justify-center">
@@ -40,7 +43,7 @@ export default function Main() {
             <Card cardData={stoppedData} type={"stopwords"} />
             <Card cardData={stemmedData} type={"stemming"} />
           </div>
-          <Analysis />
+          {normalizedData && <Analysis sendPressed={sendPressed} />}
         </div>
         <div className="text-center flex justify-center">
           <InputField />
