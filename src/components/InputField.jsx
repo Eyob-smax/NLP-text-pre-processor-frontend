@@ -129,6 +129,7 @@ export default function InputField() {
                 confirmButtonText: "OK",
                 confirmButtonColor: "#4ade80",
               });
+              fileInputRef.current.click();
               e.target.value = "";
             }}
             className="py-2 px-3 w-full resize-none h-full flex  justify-center"
