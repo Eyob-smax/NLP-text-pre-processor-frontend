@@ -121,8 +121,14 @@ export default function InputField() {
           <textarea
             ref={textAreaEl}
             name="textDocument"
-            onChange={(e) => {
-              alert("Please upload a file, text area is disabled for now!");
+            onChange={async (e) => {
+              await mySwal.fire({
+                title: "can't perform action",
+                icon: "warning",
+                text: "Please upload a file document, text input is desabled for now!",
+                confirmButtonText: "OK",
+                confirmButtonColor: "#4ade80",
+              });
               e.target.value = "";
             }}
             className="py-2 px-3 w-full resize-none h-full flex  justify-center"
