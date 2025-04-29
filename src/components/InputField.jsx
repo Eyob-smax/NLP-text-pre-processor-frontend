@@ -22,8 +22,8 @@ export default function InputField() {
         title: "Faild!",
         text: "Please upload a valid HTML file only.",
         icon: "error",
-        showConfirmButton: false,
-        timer: 500,
+        showConfirmButton: true,
+        cancelButtonColor: "#4ade80",
       });
       return;
     }
@@ -59,13 +59,10 @@ export default function InputField() {
       formData.append("file", selectedFile);
     }
     try {
-      const res = await fetch(
-        "https://nlp-text-pre-processor-backend-production.up.railway.app/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const res = await fetch("http://localhost:8090/upload", {
+        method: "POST",
+        body: formData,
+      });
       const data = await res.json();
       if (data.success) {
         setTextInput("");

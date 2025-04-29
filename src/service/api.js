@@ -5,7 +5,7 @@ function errorSender(e) {
   };
 }
 
-const IP = "https://nlp-text-pre-processor-backend-production.up.railway.app";
+const IP = "http://localhost:8090";
 
 async function getMarkupRemovedText() {
   try {

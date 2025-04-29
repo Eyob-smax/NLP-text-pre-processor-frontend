@@ -62,3 +62,16 @@ tr:hover {
 tr {
   transition: 0.3s;
 }
+
+.analysisIndexDisplay > div {
+  position: relative;
+}
+.analysisIndexDisplay > div::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 200px;
+  top: 0;
+  left: 100%;
+  background-color: black;
+}
