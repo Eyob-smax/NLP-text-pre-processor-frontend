@@ -59,7 +59,7 @@ export default function InputField() {
       formData.append("file", selectedFile);
     }
     try {
-      const res = await fetch("http://localhost:8090/upload", {
+      const res = await fetch("/api/upload", {
         method: "POST",
         body: formData,
       });

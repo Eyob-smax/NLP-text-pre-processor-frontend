@@ -5,7 +5,7 @@ function errorSender(e) {
   };
 }
 
-const IP = "http://localhost:8090";
+const IP = "/api";
 
 async function getMarkupRemovedText() {
   try {
