@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useContext, useState } from "react";
+import { useEffect, useRef, useContext, useState } from "react";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { FiArrowUp } from "react-icons/fi";
 import { SendContext } from "./Main";
@@ -134,7 +134,7 @@ export default function InputField() {
             }}
             className="py-2 px-3 w-full resize-none h-full flex  justify-center"
             id="text-document"
-            placeholder="enter you text-document"
+            placeholder="Upload you HTML-document"
           ></textarea>
         </form>
       </div>
