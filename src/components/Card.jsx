@@ -1,8 +1,8 @@
 import { VictoryPie, VictoryTheme, VictoryLabel } from "victory";
-import React from "react";
+import React, { memo } from "react";
 import { useContext } from "react";
 import { OutputContext } from "./App";
-export default function Card({ cardData, type }) {
+function Card({ cardData, type }) {
   const [showOutput] = useContext(OutputContext);
 
   return (
@@ -112,3 +112,5 @@ export default function Card({ cardData, type }) {
     </div>
   );
 }
+
+export default memo(Card);
