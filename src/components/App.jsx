@@ -1,6 +1,6 @@
-import React, { Suspense, useState } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import Header from "./Header";
-import Main from "./Main";
+const Main = lazy(() => import("./Main"));
 import { createContext } from "react";
 const OutputContext = createContext();
 
