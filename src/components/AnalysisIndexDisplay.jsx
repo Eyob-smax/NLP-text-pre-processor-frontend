@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
-import { OutputContext } from "./App";
-export default function AnalysisIndexDisplay({ indexData }) {
-  const [showOutput] = useContext(OutputContext);
+import { memo } from "react";
+import useOutput from "./custom-hooks/useOutput";
+
+function AnalysisIndexDisplay({ indexData }) {
+  const { showOutput } = useOutput();
 
   return (
     <div className="analysisIndexDisplay flex items-start justify-center my-10 min-h-[100px]">
@@ -52,3 +53,5 @@ export default function AnalysisIndexDisplay({ indexData }) {
     </div>
   );
 }
+
+export default memo(AnalysisIndexDisplay);

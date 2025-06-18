@@ -1,4 +1,3 @@
-import React from "react";
 import { FaClipboard } from "react-icons/fa";
 import { mySwal } from "./sweetAlert";
 

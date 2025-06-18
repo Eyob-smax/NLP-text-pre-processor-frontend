@@ -1,10 +1,8 @@
 import { VictoryPie, VictoryTheme, VictoryLabel } from "victory";
-import React, { memo } from "react";
-import { useContext } from "react";
-import { OutputContext } from "./App";
+import { memo } from "react";
+import useOutput from "./custom-hooks/useOutput";
 function Card({ cardData, type }) {
-  const [showOutput] = useContext(OutputContext);
-
+  const { showOutput } = useOutput();
   return (
     <div
       id="chart-card"

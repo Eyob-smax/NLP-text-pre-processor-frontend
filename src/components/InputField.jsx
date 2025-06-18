@@ -1,7 +1,7 @@
-import { useEffect, useRef, useContext, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { FiArrowUp } from "react-icons/fi";
-import { SendContext } from "./Main";
+import useSend from "./custom-hooks/useSend";
 import { mySwal } from "./sweetAlert";
 
 export default function InputField() {
@@ -9,7 +9,7 @@ export default function InputField() {
   const textAreaEl = useRef(null);
   const [textInput, setTextInput] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
-  const [setPressedButton] = useContext(SendContext);
+  const { setPressedButton } = useSend();
 
   const handleButtonClick = () => {
     fileInputRef.current.click();
@@ -129,7 +129,7 @@ export default function InputField() {
                 confirmButtonText: "OK",
                 confirmButtonColor: "#4ade80",
               });
-              fileInputRef.current.click();
+              fileInputRef?.current?.click();
               e.target.value = "";
             }}
             className="py-2 px-3 w-full resize-none h-full flex  justify-center"

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { VictoryChart, VictoryLine, VictoryTheme, VictoryAxis } from "victory";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
@@ -6,7 +6,7 @@ import { getNormalized } from "../service/api";
 import AnalysisIndexDisplay from "./AnalysisIndexDisplay";
 import { getFinalIndex } from "../service/api";
 
-export default function Analysis({ sendPressed }) {
+function Analysis({ sendPressed }) {
   const [normalizedData, setNormalizedData] = useState([]);
   const [start, setStart] = useState(0);
   const [last, setLast] = useState(10);
@@ -57,6 +57,7 @@ export default function Analysis({ sendPressed }) {
       setIndexData(res.data);
     })();
   }, [sendPressed]);
+
   return (
     <div id="analysis" className="my-10 mx-5">
       <h1 className="text-center text-4xl font-semibold">Analysis</h1>
@@ -140,3 +141,5 @@ export default function Analysis({ sendPressed }) {
     </div>
   );
 }
+
+export default memo(Analysis);

@@ -1,36 +1,28 @@
-import React, { lazy, Suspense, useState } from "react";
+import React, { lazy, Suspense } from "react";
 import Header from "./Header";
 const Main = lazy(() => import("./Main"));
-import { createContext } from "react";
-const OutputContext = createContext();
+import useOutput from "./custom-hooks/useOutput";
 
 const FinalIndex = React.lazy(() => import("./Finalndex"));
 export default function App() {
-  const [result, setResult] = useState({});
-  function showOutput(data, title) {
-    setResult({ data, title, setVisible: true });
-  }
+  const { result, setResult } = useOutput();
   return (
     <>
-      <OutputContext value={[showOutput]}>
-        <div className="flex flex-col h-full w-full box-border">
-          <Header />
-          <Main />
-          {result.setVisible && (
-            <Suspense fallback={<div>Loading</div>}>
-              <FinalIndex
-                title={result.title}
-                data={result.data}
-                handleCancel={() =>
-                  setResult((prev) => ({ ...prev, setVisible: false }))
-                }
-              />
-            </Suspense>
-          )}
-        </div>
-      </OutputContext>
+      <div className="flex flex-col h-full w-full box-border bg-[white] bg-cover min-h-screen">
+        <Header />
+        <Main />
+        {result.setVisible && (
+          <Suspense fallback={<div>Loading</div>}>
+            <FinalIndex
+              title={result.title}
+              data={result.data}
+              handleCancel={() =>
+                setResult((prev) => ({ ...prev, setVisible: false }))
+              }
+            />
+          </Suspense>
+        )}
+      </div>
     </>
   );
 }
-
-export { OutputContext };

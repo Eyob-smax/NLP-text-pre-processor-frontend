@@ -1,11 +1,11 @@
-import React from "react";
 import { MdOutlineTextFields } from "react-icons/md";
 
 import "./index.css";
+import { memo } from "react";
 
-export default function Header() {
+function Header() {
   return (
-    <header className="bg-[#F9F9F9]  box-border min-h-20 px-5 flex items-center">
+    <header className="bg-[#f9f9f927] z-1000 backdrop-blur-[20px] box-border min-h-20 px-5 flex items-center">
       <div
         onClick={() => {
           window.location.reload();
@@ -20,3 +20,5 @@ export default function Header() {
     </header>
   );
 }
+
+export default memo(Header);
